@@ -1,0 +1,133 @@
+<style>
+	.calculatorgrid{
+		border: 2px solid black;
+		border-radius: 4px;
+		background-color: #555555;
+	}
+	.display{
+		text-align: right;
+		font-size: 150%;
+		border-radius: 4px;
+		margin: 8px 6px 3px 6px;
+	}
+	p{
+		font-size: 18px;
+		text-align: center;
+	}
+	button{
+		border-radius: 4px;
+		font-size: 28px;
+		width: 70px;
+		margin: 3px;
+	}
+	.numbutton{
+		background-color: #ddddff;
+	}
+	.numbutton:hover{
+		background-color: #bbbbff;
+	}
+	.opbutton{
+		background-color: #ccaaaa;
+	}
+	.opbutton:hover{
+		background-color: #aa8888;
+	}
+	.equalsbutton{
+		background-color: #00cc00;
+	}
+	.equalsbutton:hover{
+		background-color: #00aa00;
+	}
+</style>
+
+<head>
+<title>
+	Calculator
+</title>
+</head>
+
+<body>
+
+<script>
+	var num1;
+	var num2;
+	var temp = "";
+	var op;
+	var result = false;
+
+	function input(x){
+		temp = temp + x;
+		var output = document.getElementById("output");		
+		output.value = temp;
+	}
+
+	function reset(){
+		num1 = "";
+		num2 = "";
+		temp = "";
+		result = false;
+		operation = "";
+		var output = document.getElementById("output");		
+		output.value = temp;
+	}
+
+	function operation(o){
+		num1 = temp;
+		temp = "";
+		op = o;
+		result = false;
+	}
+
+	function calculate(){
+		if(result){ num1 = temp; }
+		else{
+			num2 = temp;
+			result = true;
+		 }
+		
+		if(op == '+'){ temp = parseFloat(num1) + parseFloat(num2); }
+		else if(op == '-'){ temp = parseFloat(num1) - parseFloat(num2); }
+		else if(op == '*'){ temp = parseFloat(num1) * parseFloat(num2); }
+		else if(op == '/'){ temp = parseFloat(num1) / parseFloat(num2); }
+
+		var output = document.getElementById("output");		
+		output.value = temp;
+	}
+</script>
+
+<table class="calculatorgrid" border = "0">
+<tr>
+	<td colspan="4" class="outputcell"><input class="display" type="text" id="output" name="output" readonly></td>
+</tr>
+<tr>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(7)" name="7" id="7">7</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(8)" name="8" id="8">8</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(9)"  name="9" id="9">9</button></td>
+	<td class="numButtonCell"><button class="opbutton" onclick="operation('/')" name="divide">/</button></td>
+</tr>
+<tr>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(4)"  name="4" id="4">4</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(5)" name="5" id="5">5</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(6)" name="6" id="6">6</button></td>
+	<td class="numButtonCell"><button class="opbutton" onclick="operation('*')" name="multiply">x</button></td>
+</tr>
+<tr>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(1)" name="1" id="1">1</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(2)" name="2" id="2">2</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(3)" name="3" id="3">3</button></td>
+	<td class="numButtonCell"><button class="opbutton" onclick="operation('-')"  name="subtract">-</button></td>
+</tr>
+<tr>
+	<td class="numButtonCell"><button class="numbutton" onclick="input(0)" name="0" id="0">0</button></td>
+	<td class="numButtonCell"><button class="numbutton" onclick="input('.')" name="decimal" id".">.</button></td>
+	<td class="numButtonCell"><button class="opbutton" onclick="operation('+')" name="add">+</button></td>
+	<td class="numButtonCell"><button class="equalsbutton" onclick="calculate()" name="equals">=</button></td>
+</tr>
+<tr>
+	<td class="numButtonCell"><button class="opbutton" onclick="reset()" name="clear" id="clear">C</button></td>
+	<td colspan="3"><p>Mike's Javascript Calculator</p></td>
+</tr>
+</table>
+
+
+</body>
