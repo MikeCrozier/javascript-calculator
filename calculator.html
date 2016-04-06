@@ -56,6 +56,10 @@
 	var result = false;
 
 	function input(x){
+		if(result == true){
+			reset();
+		}
+		
 		temp = temp + x;
 		var output = document.getElementById("output");		
 		output.value = temp;
